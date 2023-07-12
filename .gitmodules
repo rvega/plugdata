@@ -25,3 +25,6 @@
 [submodule "Libraries/cpath"]
 	path = Libraries/cpath
 	url = https://github.com/BraedonWooding/cpath
+[submodule "Libraries/pd-zexy"]
+	path = Libraries/pd-zexy
+	url = https://github.com/iem-projects/pd-zexy.git

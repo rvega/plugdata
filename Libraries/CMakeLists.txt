@@ -182,6 +182,22 @@ include_directories(${LIBPD_PATH})
 source_group(libpd FILES ${LIBPD_SOURCES})
 list(APPEND SOURCE_FILES ${LIBPD_SOURCES})
 
+
+# OTHER EXTERNALS (RVG)
+# ------------------------------------------------------------------------------#
+file(GLOB OTHER_EXTERNALS_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/soundtouch/src/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/pd-zexy/src/z\~.c
+)
+
+include_directories(soundtouch/src)
+include_directories(soundtouch/src/include)
+
+include_directories(zexy/src)
+
+source_group(other_externals FILES ${OTHER_EXTERNALS_SOURCES})
+
+
 # ELSE SOURCES
 # ------------------------------------------------------------------------------#
 file(GLOB ELSE_SOURCES
@@ -368,8 +384,8 @@ endif()
 # ------------------------------------------------------------------------------#
 # TARGETS
 # ------------------------------------------------------------------------------#
-add_library(externals STATIC ${ELSE_SOURCES} ${CYCLONE_SOURCES} ${PDLUA_SOURCES} ${AUBIO_SOURCES})
-add_library(externals-multi STATIC ${ELSE_SOURCES} ${CYCLONE_SOURCES} ${PDLUA_SOURCES} ${AUBIO_SOURCES})
+add_library(externals STATIC ${ELSE_SOURCES} ${CYCLONE_SOURCES} ${PDLUA_SOURCES} ${AUBIO_SOURCES} ${OTHER_EXTERNALS_SOURCES})
+add_library(externals-multi STATIC ${ELSE_SOURCES} ${CYCLONE_SOURCES} ${PDLUA_SOURCES} ${AUBIO_SOURCES} ${OTHER_EXTERNALS_SOURCES})
 
 # ag: pdlua needs PLUGDATA symbol at compile time for PlugData integration.
 target_compile_definitions(externals PRIVATE ${LIBPD_COMPILE_DEFINITIONS} PLUGDATA=1)

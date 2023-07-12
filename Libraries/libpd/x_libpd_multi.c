@@ -273,6 +273,10 @@ static void libpd_defaultfont_init(void)
     sys_defaultfont = 12;
 }
 
+// other externals functions declaration
+void soundtouch_tilde_setup(void);
+void z_tilde_setup(void);
+
 // cyclone objects functions declaration
 void cyclone_setup(void);
 void accum_setup(void);
@@ -753,6 +757,10 @@ void pdlua_setup(const char *datadir, char *vers, int vers_len);
 void libpd_init_pdlua(const char *datadir, char *vers, int vers_len)
 {
     pdlua_setup(datadir, vers, vers_len);
+
+    // Call the setup function of additional externals here.
+    soundtouch_tilde_setup();
+    z_tilde_setup();
 }
 
 void libpd_init_else(void)
